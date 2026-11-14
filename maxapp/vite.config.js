@@ -19,7 +19,7 @@ export default defineConfig(({ mode }) => {
     },
     build: {
       sourcemap: true, // Включить source maps
-      outDir: '../data/app',
+      outDir: '../app',
       
     },
   }

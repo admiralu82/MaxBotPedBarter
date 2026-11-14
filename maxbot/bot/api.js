@@ -7,8 +7,8 @@ import { generateJWT } from './auth.js';
 import { authMiddleware, originRestriction, requireAuthForMutations } from './middleware/auth.js';
 import { existsSync, mkdirSync, unlinkSync, readFileSync } from 'fs';
 import { join } from 'path';
-import { BASE_DIR, AUTH_COOKIE, USER_COOKIE } from './logger.js';
-import { isUserAdmin, getCodeForUser, checkInitDataHash, checkUser, getMaxBotUrl  } from './utils.js';
+import { BASE_DIR, APP_DIR, AUTH_COOKIE, USER_COOKIE } from './logger.js';
+import { isUserAdmin, getCodeForUser, checkInitDataHash, checkUser, getMaxBotUrl } from './utils.js';
 import { bot } from './index.js';
 
 
@@ -16,7 +16,6 @@ import { bot } from './index.js';
 const app = express();
 const PORT = process.env.API_PORT || 3000;
 const FILESDIR = join(BASE_DIR, 'files');
-const APPDIR = join(BASE_DIR, 'app');
 
 // Создаем каталог для файлов, если не существует
 if (!existsSync(FILESDIR)) {
@@ -97,7 +96,7 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use('/app', express.static(APPDIR));
+app.use('/app', express.static(APP_DIR));
 
 // SPA использует hash-роутер: реальный адрес страницы авторизации — /app/#/auth.
 // Ссылки, отправленные ботом ранее (и уже лежащие в чатах), приходят как /app/auth?code=...

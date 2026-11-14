@@ -22,6 +22,7 @@ import util from 'util';
 const PROJECT_ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..', '..');
 
 export const BASE_DIR = resolve(PROJECT_ROOT, 'data');
+export const APP_DIR = resolve(PROJECT_ROOT, 'app');
 export const LOG_DIR = join(BASE_DIR, 'logs');
 export const LOG_FILE = join(LOG_DIR, 'bot.log');
 
@@ -208,4 +209,5 @@ process.on('exit', () => {
 
 console.log(`PROJECT_ROOT = ${PROJECT_ROOT}`);
 console.log(`BASE_DIR = ${BASE_DIR}`);
+console.log(`APP_DIR = ${APP_DIR}`);
 console.log(`LOG_DIR = ${LOG_DIR}`);
