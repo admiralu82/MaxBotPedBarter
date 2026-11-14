@@ -31,7 +31,7 @@ COPY --from=maxbot-deps /maxbot/node_modules ./node_modules
 COPY maxbot/ ./
 
 # Собранная SPA хранится в образе отдельно: /data монтируется снаружи и затёр бы её
-COPY --from=maxapp-build /data/app /opt/maxapp-dist
+COPY --from=maxapp-build /app /opt/maxapp-dist
 
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh \
