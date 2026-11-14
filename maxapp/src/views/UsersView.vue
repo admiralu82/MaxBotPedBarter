@@ -55,7 +55,7 @@ onMounted(loadUsers)
           <td>
             <div class="cell-user">
               <img v-if="item.avatar_url" :src="item.avatar_url" :alt="displayUserName(item)" class="avatar" />
-              <image v-else src="/app/blank.jpg" :alt="displayUserName(item)" class="avatar" />
+              <img v-else src="/app/blank.jpg" :alt="displayUserName(item)" class="avatar" />
               <div>
                 <div>{{ displayUserName(item) }}</div>
               </div>
