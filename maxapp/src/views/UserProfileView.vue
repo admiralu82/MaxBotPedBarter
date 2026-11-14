@@ -185,12 +185,7 @@ onMounted(async () => {
 
     <template v-else-if="profile">
       <header class="profile">
-        <img
-          v-if="profile.avatar_url"
-          :src="profile.avatar_url"
-          :alt="pageTitle"
-          class="avatar"
-        />
+        <img v-if="profile.avatar_url" :src="profile.avatar_url" :alt="pageTitle" class="avatar" />
         <div class="profile-main">
           <div class="profile-title">
             <h1>{{ pageTitle }}</h1>
@@ -208,10 +203,6 @@ onMounted(async () => {
               <dd>{{ profile.phone || '—' }}</dd>
             </div>
             <div>
-              <dt>ID</dt>
-              <dd>{{ profile.user_id }}</dd>
-            </div>
-            <div>
               <dt>Материалов</dt>
               <dd>{{ notes.length }}</dd>
             </div>
@@ -220,12 +211,7 @@ onMounted(async () => {
           <p v-if="adminError" class="error-box">{{ adminError }}</p>
 
           <div v-if="isAdmin && !isSelf" class="admin-control">
-            <button
-              class="secondary"
-              type="button"
-              :disabled="savingAdmin"
-              @click="toggleAdmin"
-            >
+            <button class="secondary" type="button" :disabled="savingAdmin" @click="toggleAdmin">
               {{ savingAdmin ? 'Сохраняем…' : profileIsAdmin ? 'Снять права админа' : 'Сделать админом' }}
             </button>
           </div>
@@ -244,26 +230,15 @@ onMounted(async () => {
         <h3 class="group-title">{{ block.name }}</h3>
         <ul class="note-list">
           <li v-for="note in block.notes" :key="note.note_id">
-            <NoteCard
-              :note="note"
-              :files="attachments[note.note_id] || []"
-              @edit="startEdit"
-              @delete="startDelete"
-            />
+            <NoteCard :note="note" :files="attachments[note.note_id] || []" @edit="startEdit" @delete="startDelete" />
           </li>
         </ul>
       </div>
     </template>
 
     <BaseModal v-if="editingNote" title="Редактирование материала" @close="editingNote = null">
-      <NoteForm
-        :group-id="editingNote.group_id"
-        :author-id="editingNote.user_id"
-        :note="editingNote"
-        :attachments="attachments[editingNote.note_id] || []"
-        @saved="onSaved"
-        @close="editingNote = null"
-      />
+      <NoteForm :group-id="editingNote.group_id" :author-id="editingNote.user_id" :note="editingNote"
+        :attachments="attachments[editingNote.note_id] || []" @saved="onSaved" @close="editingNote = null" />
     </BaseModal>
 
     <BaseModal v-if="deletingNote" title="Удалить материал?" @close="deletingNote = null">
@@ -363,7 +338,7 @@ onMounted(async () => {
   margin: 1.75rem 0 1rem;
 }
 
-.group-block + .group-block {
+.group-block+.group-block {
   margin-top: 1.5rem;
 }
 

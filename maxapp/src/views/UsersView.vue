@@ -54,15 +54,10 @@ onMounted(loadUsers)
         <tr v-for="item in users" :key="item.user_id">
           <td>
             <div class="cell-user">
-              <img
-                v-if="item.avatar_url"
-                :src="item.avatar_url"
-                :alt="displayUserName(item)"
-                class="avatar"
-              />
+              <img v-if="item.avatar_url" :src="item.avatar_url" :alt="displayUserName(item)" class="avatar" />
+              <image v-else src="/blank.jpg" :alt="displayUserName(item)" class="avatar" />
               <div>
                 <div>{{ displayUserName(item) }}</div>
-                <div class="muted small">ID: {{ item.user_id }}</div>
               </div>
             </div>
           </td>
@@ -74,10 +69,7 @@ onMounted(loadUsers)
             <span v-else class="muted">пользователь</span>
           </td>
           <td class="col-actions">
-            <RouterLink
-              class="details-link"
-              :to="{ name: 'user', params: { id: item.user_id } }"
-            >
+            <RouterLink class="details-link" :to="{ name: 'user', params: { id: item.user_id } }">
               Подробнее
             </RouterLink>
           </td>
